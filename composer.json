@@ -1,6 +1,13 @@
 {
     "require": {
+        "php": ">=5.5",
         "silex/silex": "~1.2",
         "guzzlehttp/guzzle": "~5.0"
+    },
+    "extra": {
+        "heroku": {
+            "document-root": "web",
+            "index-document": "index.php"
+        }
     }
 }
