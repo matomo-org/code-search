@@ -1,2 +1,2 @@
-https://bitbucket.org/sday_atlassian/heroku-buildpack-bower.git
+https://github.com/heroku/heroku-buildpack-nodejs
 https://github.com/heroku/heroku-buildpack-php
