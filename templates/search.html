@@ -50,8 +50,9 @@
         <div class="result" ng-repeat="result in results.items">
 
             <div class="header">
-                <img class="img-thumbnail img-circle" ng-src="{{ result.repository.owner.avatar_url }}">
+                <a href="{{ result.repository.html_url }}"><img class="img-thumbnail img-circle" ng-src="{{ result.repository.owner.avatar_url }}"></a>
                 <p class="pull-right"><code>{{ result.path }}</code></p>
+
                 <p class="title">
                     <a href="{{ result.repository.html_url }}">{{ result.repository.full_name }}</a>
                 </p>
