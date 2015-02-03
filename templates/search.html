@@ -53,6 +53,14 @@
             Searching on GitHub…
         </div>
 
+        <div class="text-muted text-center" ng-show="!loading && !!results.items">
+            <p>
+                {{ results.total_count }} result(s)
+            </p>
+
+            <hr/>
+        </div>
+
         <div class="result" ng-repeat="result in results.items">
 
             <div class="header">
