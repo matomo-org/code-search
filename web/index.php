@@ -15,13 +15,16 @@ $app->get('/', function () {
 });
 
 $app->get('/api/search', function (Request $request) use ($app) {
+    $includePiwik = $request->get('includePiwik', true);
     $query = $request->get('q');
     if (! $query) {
         return new Response('No query specified', 400);
     }
 
     $repositories = getPluginRepositories();
-    $repositories[] = 'piwik/piwik';
+    if ($includePiwik) {
+        $repositories[] = 'piwik/piwik';
+    }
     $repositories = array_map(function ($plugin) {
         return 'repo:' . $plugin;
     }, $repositories);
