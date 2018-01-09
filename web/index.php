@@ -37,7 +37,7 @@ $app->get('/api/search', function (Request $request) use ($app) {
         ],
     ]);
 
-    return $app->json($response->json());
+    return $app->json(json_decode($response->getBody(), true));
 });
 
 $app->run();
@@ -52,7 +52,7 @@ function getPluginRepositories()
 
     $client = new Client();
     $response = $client->get('http://plugins.piwik.org/api/1.0/plugins');
-    $plugins = $response->json();
+    $plugins = json_decode($response->getBody(), true);
 
     $plugins = array_map(function ($plugin) {
         $url = $plugin['repositoryUrl'];
