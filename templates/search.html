@@ -3,17 +3,14 @@
 <head>
     <title>Piwik plugins code search</title>
 
-    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="vendor/highlightjs/styles/github.css"/>
-    <link rel="stylesheet" href="vendor/open-sans-fontface/open-sans.css"/>
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="highlight.js/github.css"/>
     <link rel="stylesheet" href="css/style.css"/>
 
-    <script src="vendor/angular/angular.min.js"></script>
-    <script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="vendor/highlightjs/highlight.pack.js"></script>
-    <script src="vendor/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="highlight.js/highlight.pack.js"></script>
+    <script src="node_modules/angular-highlightjs/angular-highlightjs.min.js"></script>
 
     <script src="js/app.js"></script>
 </head>
@@ -21,23 +18,24 @@
 
     <div class="container">
 
-        <div class="page-header">
-            <h1>Piwik code search</h1>
-        </div>
+        <h1>Piwik code search</h1>
+        <hr>
 
         <form id="searchForm" ng-submit="search()">
             <p>
                 Search for code in <a href="https://github.com/piwik/piwik">Piwik</a> and in all plugins registered in the <a
                     href="http://plugins.piwik.org/">Marketplace</a>.
             </p>
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for..." ng-model="expression">
-                <span class="input-group-btn">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search for..." ng-model="expression" autofocus>
+                <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
-                        <i class="fa fa-search"></i>
+                        <svg class="icon" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1216 832q0-185-131.5-316.5t-316.5-131.5-316.5 131.5-131.5 316.5 131.5 316.5 316.5 131.5 316.5-131.5 131.5-316.5zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124-143 0-273.5-55.5t-225-150-150-225-55.5-273.5 55.5-273.5 150-225 225-150 273.5-55.5 273.5 55.5 225 150 150 225 55.5 273.5q0 220-124 399l343 343q37 37 37 90z"></path>
+                        </svg>
                         Search
                     </button>
-                </span>
+                </div>
             </div>
             <div>
                 <label>
@@ -52,7 +50,9 @@
         </div>
 
         <div class="alert alert-info" ng-show="loading">
-            <i class="fa fa-spinner fa-spin"></i>
+            <svg class="icon rotate" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z"></path>
+            </svg>
             Searching on GitHub…
         </div>
 
@@ -67,8 +67,8 @@
         <div class="result" ng-repeat="result in results.items">
 
             <div class="header">
-                <a href="{{ result.repository.html_url }}"><img class="img-thumbnail img-circle" ng-src="{{ result.repository.owner.avatar_url }}"></a>
-                <p class="pull-right"><code>{{ result.path }}</code></p>
+                <a href="{{ result.repository.html_url }}"><img class="img-thumbnail rounded-circle" ng-src="{{ result.repository.owner.avatar_url }}"></a>
+                <code class="float-right">{{ result.path }}</code>
 
                 <p class="title">
                     <a href="{{ result.repository.html_url }}">{{ result.repository.full_name }}</a>

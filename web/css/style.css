@@ -1,3 +1,8 @@
+h1 {
+    font-weight: 300;
+    margin-top: 2rem;
+}
+
 #searchForm {
     margin-bottom: 20px;
 }
@@ -50,3 +55,20 @@
     color: #888;
 }
 
+.icon {
+    height: 14px;
+    width: 14px;
+    fill: currentColor
+}
+
+.rotate {
+    animation: fa-spin 2s infinite linear;
+}
+@keyframes fa-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}

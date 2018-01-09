@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "angular": "^1.6.8",
+    "angular-highlightjs": "^0.7.1",
+    "angular-sanitize": "^1.6.8",
+    "bootstrap": "^4.0.0-beta.3"
+  },
+  "name": "matomo-code-search",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "author": "Matomo Team",
+  "license": "UNLICENSED",
+  "description": ""
+}

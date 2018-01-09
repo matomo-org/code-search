@@ -8,12 +8,12 @@ app.controller('SearchController', function($scope, $http) {
     $scope.search = function() {
         $scope.loading = true;
         $http.get('/api/search?includePiwik=' + ($scope.includePiwik + 0) + '&q=' + $scope.expression).
-            success(function(data) {
-                $scope.results = data;
+            then(function(data) {
+                console.warn(data);
+                $scope.results = data.data;
                 $scope.error = false;
                 $scope.loading = false;
-            }).
-            error(function() {
+            }, function() {
                 $scope.error = true;
                 $scope.loading = false;
             });
