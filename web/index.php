@@ -31,6 +31,10 @@ $app->get('/api/search', function (Request $request) use ($app, $config) {
     if ($includeMotomo) {
         $repositories[] = 'matomo-org/matomo';
     }
+    $repositories = array_filter($repositories, function ($plugin) {
+        return $plugin !== "";
+    });
+
     $repositories = array_map(function ($plugin) {
         return 'repo:' . $plugin;
     }, $repositories);
