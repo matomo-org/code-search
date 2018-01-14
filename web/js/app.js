@@ -6,6 +6,9 @@ app.controller('SearchController', function($scope, $http) {
     $scope.includeMotomo = true;
 
     $scope.search = function() {
+        if (typeof $scope.expression === "undefined" || $scope.expression.length === 0) {
+            return false;
+        }
         $scope.loading = true;
         $http.get('/api/search?includeMotomo=' + ($scope.includePiwik + 0) + '&q=' + $scope.expression).
             then(function(data) {
