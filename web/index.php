@@ -10,11 +10,17 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $app = new Application();
 $app['debug'] = true;
 
+if (file_exists("../config.ini")) {
+    $config = parse_ini_file("../config.ini");
+} else {
+    $config = false;
+}
+
 $app->get('/', function () {
     return file_get_contents(__DIR__ . '/../templates/search.html');
 });
 
-$app->get('/api/search', function (Request $request) use ($app) {
+$app->get('/api/search', function (Request $request) use ($app, $config) {
     $includeMotomo = $request->get('includeMotomo', true);
     $query = $request->get('q');
     if (! $query) {
@@ -30,12 +36,20 @@ $app->get('/api/search', function (Request $request) use ($app) {
     }, $repositories);
     $query = $query . '+' . implode('+', $repositories);
 
+    if ($config) {
+        $query .= "&client_id=" . $config["client_id"] . "&client_secret=" . $config["client_secret"];
+    }
+
     $client = new Client();
-    $response = $client->get('https://api.github.com/search/code?q=' . $query, [
-        'headers' => [
-            'Accept' => 'application/vnd.github.v3.text-match+json',
-        ],
-    ]);
+    try {
+        $response = $client->get('https://api.github.com/search/code?q=' . $query, [
+            'headers' => [
+                'Accept' => 'application/vnd.github.v3.text-match+json',
+            ],
+        ]);
+    } catch (\GuzzleHttp\Exception\ClientException $exception) {
+        return new Response(json_encode(["error" => $exception->getMessage()]), 429);
+    }
 
     return $app->json(json_decode($response->getBody(), true));
 });
