@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="githubSearch">
 <head>
-    <title>Piwik plugins code search</title>
+    <title>Motomo plugins code search</title>
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="highlight.js/github.css"/>
@@ -18,13 +18,13 @@
 
     <div class="container">
 
-        <h1>Piwik code search</h1>
+        <h1>Matomo code search</h1>
         <hr>
 
         <form id="searchForm" ng-submit="search()">
             <p>
-                Search for code in <a href="https://github.com/piwik/piwik">Piwik</a> and in all plugins registered in the <a
-                    href="http://plugins.piwik.org/">Marketplace</a>.
+                Search for code in <a href="https://github.com/matomo-org/matomo">Matomo</a> and in all plugins registered in the <a
+                    href="http://plugins.matomo.org/">Marketplace</a>.
             </p>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search for..." ng-model="expression" autofocus>
@@ -39,8 +39,8 @@
             </div>
             <div>
                 <label>
-                    <input type="checkbox" ng-model="includePiwik">
-                    Include piwik/piwik
+                    <input type="checkbox" ng-model="includeMotomo">
+                    Include matomo-org/matomo
                 </label>
             </div>
         </form>

@@ -15,15 +15,15 @@ $app->get('/', function () {
 });
 
 $app->get('/api/search', function (Request $request) use ($app) {
-    $includePiwik = $request->get('includePiwik', true);
+    $includeMotomo = $request->get('includeMotomo', true);
     $query = $request->get('q');
     if (! $query) {
         return new Response('No query specified', 400);
     }
 
     $repositories = getPluginRepositories();
-    if ($includePiwik) {
-        $repositories[] = 'piwik/piwik';
+    if ($includeMotomo) {
+        $repositories[] = 'matomo-org/matomo';
     }
     $repositories = array_map(function ($plugin) {
         return 'repo:' . $plugin;
@@ -51,7 +51,7 @@ function getPluginRepositories()
     }
 
     $client = new Client();
-    $response = $client->get('http://plugins.piwik.org/api/1.0/plugins');
+    $response = $client->get('http://plugins.motomo.org/api/2.0/plugins');
     $plugins = json_decode($response->getBody(), true);
 
     $plugins = array_map(function ($plugin) {

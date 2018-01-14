@@ -1,10 +1,11 @@
-# Piwik Code Search
+# Matomo Code Search
 
 ## Installation
 
 ```
 $ composer install
-$ bower install
+$ cd web
+$ npm install
 ```
 
 ## Development
